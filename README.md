@@ -6,8 +6,9 @@
 
 Make sure you have [Node.js](https://nodejs.org/en/) and [Mongo](https://docs.mongodb.com/manual/administration/install-community/) installed.
 
-```sh
-- Create /.env same /.env.example content and fill empty fields
+```sh 
+- Create /.env same /.env.example content and fill empty fields 
+- make sure DB_USER, DB_PASSWORD and DB_DATABASE is already configured on the Mongo
 - yarn dev or npm run dev to start server in development environment
 - yarn start or npm run start to gent ts files and run in production environment
 ```
@@ -18,6 +19,5 @@ Make sure you have [Node.js](https://nodejs.org/en/) and [Mongo](https://docs.mo
 Make sure you have [Node.js](https://nodejs.org/en/), [Docker](https://docs.docker.com/desktop/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 ```sh
 - Create /.env same /.env.example content and fill empty fields
-- run yarn or npm i  to install dependencies
-- run `docker-compose up -d`
+- run docker-compose up -d
 ```
