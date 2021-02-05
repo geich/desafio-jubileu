@@ -1,11 +1,11 @@
 import { connect } from 'mongoose'
 
-const { DB_USER, DB_HOST, DB_PASSWORD, DB_PORT } = process.env
+const { DB_HOST, DB_PORT } = process.env
 
-export const MONGO_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
+export const MONGO_URI = `mongodb://${DB_HOST}:${DB_PORT}`
 
 export default async (database: string): Promise<void> => {
-    const mongoConnectUrl = `${MONGO_URI}/${database}?authSource=admin`
+    const mongoConnectUrl = `${MONGO_URI}/${database}`
 
     const dbConnect = () =>
         connect(mongoConnectUrl, {

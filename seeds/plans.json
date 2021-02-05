@@ -1,0 +1,14 @@
+[
+    {
+        "name": "FaleMais 30",
+        "timeInMinutes": 30 
+    },
+    {
+        "name": "FaleMais 60",
+        "timeInMinutes": 60 
+    },
+    {
+        "name": "FaleMais 90",
+        "timeInMinutes": 90 
+    }
+]
