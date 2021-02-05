@@ -6,7 +6,7 @@
   "author": "geich <eich.gabriel1@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/server.ts",
+    "dev": "nodemon -L ./src/server.ts",
     "start": "tsc && node dist/server.js"
   },
   "dependencies": {
