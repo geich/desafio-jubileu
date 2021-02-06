@@ -21,3 +21,28 @@ Make sure you have [Node.js](https://nodejs.org/en/), [Docker](https://docs.dock
 - Create /.env same /.env.example content and fill empty fields
 - run docker-compose up -d
 ```
+
+
+### Request example
+post to http://localhost:3000/plans
+```json
+{
+    "origin": "011", 
+    "destiny": "016", 
+    "minutes": 92, 
+    "planName": "FaleMais 90"
+}
+```
+
+### Response example
+
+```json
+{
+    "origin": "011",
+    "destiny": "016",
+    "planName": "FaleMais 90",
+    "minutes": 92,
+    "priceWithoutPlan": 174.8,
+    "priceWithPlanDiscount": 4.18
+}
+```
