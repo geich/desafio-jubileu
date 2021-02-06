@@ -4,10 +4,7 @@ import PlanController from './controllers/PlanController'
 
 const routes = Router()
 
-routes.get('/', async (req, res) => {
-    res.send('⚡️[server]: Server is running')
-})
-
 routes.get('/plans', PlanController.index)
+routes.post('/plans', PlanController.show)
 
 export default routes

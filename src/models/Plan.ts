@@ -15,4 +15,4 @@ const planSchema: Schema<Plan> = new Schema(
 )
 
 
-export default model<Plan>('Plans', planSchema)
+export default model<Plan>('plans', planSchema)

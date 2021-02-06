@@ -18,6 +18,7 @@ services:
             - "3000:3000"
         volumes:
             - .:/usr/app
+            - node_modules:/usr/app/node_modules
         networks:
             - app-network
         command: npm run dev
@@ -52,3 +53,4 @@ networks:
 
 volumes:
     dbdata:
+    node_modules:

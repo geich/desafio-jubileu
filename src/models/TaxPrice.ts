@@ -1,4 +1,4 @@
-import { Document, model, Schema } from 'mongoose'
+import { Document, model, Schema, SchemaTypes } from 'mongoose'
 
 export interface TaxPrice extends Document {
     _id: string
@@ -9,12 +9,11 @@ export interface TaxPrice extends Document {
 
 const taxPriceSchema: Schema<TaxPrice> = new Schema(
     {
-        origin: { type: String, required: true },
+        origin: { type: String, required: true, unique: true },
         destiny: { type: String, required: true },
         pricePerMinute: { type: Number, required: true }
     },
     { timestamps: true }
 )
 
-
-export default model<TaxPrice>('TaxesPrices', taxPriceSchema)
+export default model<TaxPrice>('taxesPrices', taxPriceSchema, 'taxesPrices')
