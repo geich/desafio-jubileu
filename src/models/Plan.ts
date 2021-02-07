@@ -14,5 +14,4 @@ const planSchema: Schema<Plan> = new Schema(
     { timestamps: true }
 )
 
-
 export default model<Plan>('plans', planSchema)

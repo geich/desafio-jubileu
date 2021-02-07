@@ -1,9 +1,8 @@
-
 import { Request, Response } from 'express'
 import * as yup from 'yup'
-import { calcPlanDiscount } from '../helpers/plans'
-import PlanModel from '../models/Plan'
-import TaxPriceModel from '../models/TaxPrice'
+import { calcPlanDiscount } from '@helpers/plans'
+import PlanModel from '@models/Plan'
+import TaxPriceModel from '@models/TaxPrice'
 
 const PlanShowSchema = yup.object().shape({
     origin: yup.string().min(3).max(3).required(),
@@ -14,8 +13,8 @@ const PlanShowSchema = yup.object().shape({
 class UserController {
     public index = async (req: Request, res: Response): Promise<Response> => {
         return PlanModel.find()
-        .then(plan => res.json(plan))
-        .catch(err => res.status(500).send(err))
+            .then(plan => res.json(plan))
+            .catch(err => res.status(500).send(err))
     }
 
     public show = async (req: Request, res: Response): Promise<Response> => {
@@ -33,31 +32,49 @@ class UserController {
         }
 
         return TaxPriceModel.findOne({ origin, destiny })
-        .then(tax => {
-            if(!tax) return res.status(404).send('Tax not found in database, check origin and destiny fields')
+            .then(tax => {
+                if (!tax) {
+                    return res
+                        .status(404)
+                        .send(
+                            'Tax not found in database, check origin and destiny fields'
+                        )
+                }
 
-            return PlanModel.findOne({ name: planName })
-            .then(plan => {
-                if(!plan) return res.status(404).send('Plan not found in database, check plan name')
+                return PlanModel.findOne({ name: planName })
+                    .then(plan => {
+                        if (!plan) {
+                            return res
+                                .status(404)
+                                .send(
+                                    'Plan not found in database, check plan name'
+                                )
+                        }
 
-                const priceWithoutPlan = parseFloat((minutes * tax.pricePerMinute).toFixed(2))
-                const priceWithPlanDiscount = parseFloat(calcPlanDiscount(plan.timeInMinutes, minutes, tax.pricePerMinute).toFixed(2))
+                        const priceWithoutPlan = parseFloat(
+                            (minutes * tax.pricePerMinute).toFixed(2)
+                        )
+                        const priceWithPlanDiscount = parseFloat(
+                            calcPlanDiscount(
+                                plan.timeInMinutes,
+                                minutes,
+                                tax.pricePerMinute
+                            ).toFixed(2)
+                        )
 
-                return res.json({ 
-                    origin,
-                    destiny,
-                    planName,
-                    minutes,
-                    priceWithoutPlan, 
-                    priceWithPlanDiscount 
-                })
+                        return res.json({
+                            origin,
+                            destiny,
+                            planName,
+                            minutes,
+                            priceWithoutPlan,
+                            priceWithPlanDiscount
+                        })
+                    })
+                    .catch(err => res.status(500).send(err))
             })
             .catch(err => res.status(500).send(err))
-        })
-        .catch(err => res.status(500).send(err))
     }
-
-    
 }
 
 export default new UserController()
